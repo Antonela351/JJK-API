@@ -1,11 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jujutsu Kaisen: Examen de Hechicería</title>
+    <link href="https://api.jikan.moe/v4/anime/51009/characters">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div class="animated-bg"></div>
+    <div class="fog-layer"></div>
+
+    <!-- PANTALLA DE INICIO -->
+    <div id="start-screen" class="game-container">
+        <!-- Quitamos la animación de movimiento, ahora es un diseño neón estático fijo -->
+        <h1 class="jjk-title">JUJUTSU KAISEN</h1>
+        <h2 class="jjk-subtitle">Evaluación de Grado Hechicero</h2>
+        <p class="instructions">Sobrevive a 5 rondas exorcizando las pistas correctas. Un solo fallo y tu energía maldita será devorada.</p>
+        <div class="menu-buttons">
+            <button class="btn-main pulse" onclick="startGame()">INICIAR EVALUACIÓN</button>
+            <button class="btn-secondary" onclick="window.location.reload()">REPLEGARSE</button>
+        </div>
+    </div>
+
+    <!-- PANTALLA DE JUEGO -->
+    <div id="game-screen" class="game-container hidden">
+        <div class="round-header">
+            <span class="round-tag">RITUAL <span id="current-round">1</span>/5</span>
+        </div>
+        
+        <!-- Bloque de preguntas -->
+        <div id="quiz-content">
+            <div class="clue-box">
+                <p id="clue-text">Desplegando Dominio Innato...</p>
+            </div>
+            <div id="options-container" class="options-grid"></div>
+        </div>
+
+        <!-- Bloque de acierto (Foto configurable localmente por vos) -->
+        <div id="feedback-container" class="feedback-box hidden">
+            <h3 class="success-text">¡EVALUACIÓN COMPLETADA CON ÉXITO!</h3>
+            <p id="feedback-name" class="character-revealed-name"></p>
+            <div class="image-wrapper">
+                <img id="character-img" src="" alt="Personaje">
+            </div>
+            <button id="btn-next" class="btn-main pulse" onclick="nextRound()">SIGUIENTE RITUAL</button>
+        </div>
+    </div>
+
+    <!-- PANTALLA GAME OVER -->
+<div id="game-over-screen" class="game-container hidden">
+    <h1 class="lose-title">¡EVALUACIÓN REPROBADA!</h1>
+    <p class="lose-text">Tu expansión de dominio falló. Has sido clasificado como una baja más del mundo de la hechicería.</p>
     
+    <!-- NUEVO: Bloque que revelará la respuesta correcta -->
+    <p id="reveal-correct" style="color: #ff3333; font-weight: bold; margin-top: 15px; font-size: 1.2rem;"></p>
+    
+    <div class="menu-buttons">
+        <button class="btn-main" onclick="startGame()">REINTENTAR RITUAL</button>
+        <button class="btn-secondary" onclick="goToHome()">VOLVER AL INICIO</button>
+    </div>
+</div>
+
+    <!-- PANTALLA DE VICTORIA -->
+    <div id="victory-screen" class="game-container hidden">
+        <h1 class="win-title">¡GRADO ESPECIAL!</h1>
+        <h2 class="jjk-subtitle">Dominio Absoluto Completado</h2>
+        <p class="instructions" style="color: #00ffcc;">Felicidades, hechicero. Has demostrado estar a la altura de los más grandes de la academia de Tokio.</p>
+        <button class="btn-main" onclick="goToHome()">VOLVER AL INICIO</button>
+    </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
+<!-- PANTALLA GAME OVER -->
+<div id="game-over-screen" class="game-container hidden">
+    <h1 class="lose-title">¡EVALUACIÓN REPROBADA!</h1>
+    <p class="lose-text">Tu expansión de dominio falló. Has sido clasificado como una baja más del mundo de la hechicería.</p>
+    
+    <!-- NUEVO: Bloque que revelará la respuesta correcta -->
+    <p id="reveal-correct" style="color: #ff3333; font-weight: bold; margin-top: 15px; font-size: 1.2rem;"></p>
+    
+    <div class="menu-buttons">
+        <button class="btn-main" onclick="startGame()">REINTENTAR RITUAL</button>
+        <button class="btn-secondary" onclick="goToHome()">VOLVER AL INICIO</button>
+    </div>
+</div>
